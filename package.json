@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.6",
@@ -34,7 +36,7 @@
     "postcss": "^8.4.39",
     "sass": "^1.77.6",
     "tailwindcss": "^3.4.4",
-    "ts-jest": "^29.1.5",
+    "ts-node": "^10.9.2",
     "typescript": "^5"
   }
 }
