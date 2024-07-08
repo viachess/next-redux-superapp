@@ -1,3 +1,5 @@
+"use client";
+
 import { FC, FormEvent, useRef, useState } from "react";
 import { TodoListElement, TodoListElementType } from "../todo-list-element";
 import { nanoid } from "nanoid";
