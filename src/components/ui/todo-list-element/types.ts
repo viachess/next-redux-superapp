@@ -1,4 +1,4 @@
-export type TodoListElementProps = {
+export type TodoListElementType = {
   title: string;
   id: string;
 };
