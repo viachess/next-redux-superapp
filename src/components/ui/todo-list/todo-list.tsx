@@ -1,12 +1,17 @@
 "use client";
 
 import { FC, FormEvent, useRef, useState } from "react";
-import { TodoListElement, TodoListElementType } from "../todo-list-element";
+import { TodoListElement } from "../todo-list-element";
 import { nanoid } from "nanoid";
 import { TodoListErrorEnum } from "./types";
+import { RootState } from "@/lib/store";
+import { addTodo, deleteTodo, updateTodo } from "@/lib/slices";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 
 export const TodoList: FC = () => {
-  const [list, setList] = useState<TodoListElementType[]>([]);
+  const todos = useAppSelector((state: RootState) => state.todoSlice.todos);
+  const dispatch = useAppDispatch();
+
   const [error, setError] = useState<TodoListErrorEnum | null>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
 
@@ -14,23 +19,17 @@ export const TodoList: FC = () => {
     e.preventDefault();
     const value = inputRef?.current?.value;
     if (value) {
-      setList((prev) => {
-        return [...prev, { id: nanoid(), title: value }];
-      });
+      dispatch(addTodo({ id: nanoid(), title: value }));
       setError(null);
     } else {
       setError(TodoListErrorEnum.EMPTY_INPUT_ERROR);
     }
   };
 
-  const handleDelete = (id: string) => {
-    setList((prev) => prev.filter((el) => el.id !== id));
-  };
+  const handleDelete = (id: string) => dispatch(deleteTodo({ id }));
 
   const handleEdit = (id: string, newTitle: string) => {
-    setList((prev) =>
-      prev.map((el) => (el.id === id ? { id, title: newTitle } : el))
-    );
+    dispatch(updateTodo({ id, newTitle }));
   };
 
   const handleError = () => {
@@ -56,12 +55,12 @@ export const TodoList: FC = () => {
       </form>
       {error && <p className="text-red-500 text-m">{error}</p>}
       <div className="flex flex-col gap-2 py-3">
-        {list.map((item) => {
+        {todos.map((todo) => {
           return (
             <TodoListElement
-              key={item.id}
-              id={item.id}
-              title={item.title}
+              key={todo.id}
+              id={todo.id}
+              title={todo.title}
               onDelete={handleDelete}
               onEdit={handleEdit}
               onError={handleError}
