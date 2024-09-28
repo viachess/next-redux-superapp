@@ -1,1 +1,2 @@
-export * from "./todo-list";
+export { TodoList } from "./todo-list";
+export { TodoListErrorEnum } from "./types";

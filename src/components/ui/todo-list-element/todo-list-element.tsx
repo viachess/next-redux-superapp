@@ -1,7 +1,7 @@
 "use client";
 
 import { FC, useRef, useState } from "react";
-import { InputText } from "../input-text";
+import { InputText } from "../input-text/input-text";
 import { TodoListElementType } from "./types";
 
 type TodoListElementProps = {
