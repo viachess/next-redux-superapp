@@ -1,8 +1,9 @@
 "use client";
 
 import { FC, useRef, useState } from "react";
-import { InputText } from "../input-text/input-text";
+import { InputText } from "../../input-text/input-text";
 import { TodoListElementType } from "./types";
+import { TextArea } from "../../textarea/textarea";
 
 type TodoListElementProps = {
   onDelete: (id: string) => void;
@@ -18,14 +19,14 @@ export const TodoListElement: FC<TodoListElementProps> = ({
   onError,
 }) => {
   const [isEditing, toggleEditing] = useState<boolean>(false);
-  const editInputRef = useRef<HTMLInputElement | null>(null);
+  const editTextAreaRef = useRef<HTMLTextAreaElement | null>(null);
   const [editedTitle, setEditedTitle] = useState<string>(title);
 
   const handleEditClick = () => {
     toggleEditing(true);
     setTimeout(() => {
       // when click occurs, the input does not exist in the DOM yet.
-      editInputRef.current?.focus();
+      editTextAreaRef.current?.focus();
     }, 0);
   };
 
@@ -46,19 +47,14 @@ export const TodoListElement: FC<TodoListElementProps> = ({
 
   return (
     <div className="flex justify-between py-2 px-4 rounded border-solid border-2 border-zinc-300">
-      <div className="h-full">
-        {isEditing ? (
-          <InputText
-            ref={editInputRef}
-            value={editedTitle}
-            onChange={handleEditedTitleChange}
-            onSubmit={handleSaveTitleClick}
-            className="h-full w-full text-gray-700"
-          />
-        ) : (
-          <div>{title}</div>
-        )}
-      </div>
+      <TextArea
+        ref={editTextAreaRef}
+        value={isEditing ? editedTitle : title}
+        disabled={!isEditing}
+        onChange={handleEditedTitleChange}
+        onSubmit={handleSaveTitleClick}
+        className="w-full text-gray-700"
+      />
       <div className="flex gap-2 pl-2">
         {isEditing ? (
           // save

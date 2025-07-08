@@ -1,7 +1,7 @@
 "use client";
 
 import { FC, FormEvent, useRef, useState } from "react";
-import { TodoListElement } from "../todo-list-element";
+import { TodoListElement } from "./todo-list-element";
 import { nanoid } from "nanoid";
 import { TodoListErrorEnum } from "./types";
 import { RootState } from "@/lib/store";
@@ -17,10 +17,10 @@ export const TodoList: FC = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const value = inputRef?.current?.value;
-    if (value) {
-      dispatch(addTodo({ id: nanoid(), title: value }));
+    if (inputRef.current?.value) {
+      dispatch(addTodo({ id: nanoid(), title: inputRef.current.value }));
       setError(null);
+      inputRef.current.value = "";
     } else {
       setError(TodoListErrorEnum.EMPTY_INPUT_ERROR);
     }
