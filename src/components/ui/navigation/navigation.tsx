@@ -16,6 +16,10 @@ const routes = [
     href: "/users",
     title: "Users",
   },
+  {
+    href: "/weather",
+    title: "Weather",
+  },
 ];
 
 export const Navigation = () => {

@@ -1,15 +1,14 @@
 "use client";
 
-import { FC, FormEvent, useRef, useState } from "react";
+import { FC, FormEvent, memo, useCallback, useRef, useState } from "react";
 import { TodoListElement } from "./todo-list-element";
 import { nanoid } from "nanoid";
 import { TodoListErrorEnum } from "./types";
-import { RootState } from "@/lib/store";
-import { addTodo, deleteTodo, updateTodo } from "@/lib/slices";
+import { addTodo, deleteTodo, selectAllTodos, updateTodo } from "@/lib/slices";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 
-export const TodoList: FC = () => {
-  const todos = useAppSelector((state: RootState) => state.todoSlice.todos);
+export const TodoList: FC = memo(() => {
+  const todos = useAppSelector(selectAllTodos);
   const dispatch = useAppDispatch();
 
   const [error, setError] = useState<TodoListErrorEnum | null>(null);
@@ -26,15 +25,21 @@ export const TodoList: FC = () => {
     }
   };
 
-  const handleDelete = (id: string) => dispatch(deleteTodo({ id }));
+  const handleDelete = useCallback(
+    (id: string) => dispatch(deleteTodo({ id })),
+    [dispatch]
+  );
 
-  const handleEdit = (id: string, newTitle: string) => {
-    dispatch(updateTodo({ id, newTitle }));
-  };
+  const handleEdit = useCallback(
+    (id: string, newTitle: string) => {
+      dispatch(updateTodo({ id, newTitle }));
+    },
+    [dispatch]
+  );
 
-  const handleError = () => {
+  const handleError = useCallback(() => {
     setError(TodoListErrorEnum.EMPTY_INPUT_ERROR);
-  };
+  }, []);
 
   return (
     <div className="flex-col pt-4 max-w-96 mx-auto">
@@ -70,4 +75,6 @@ export const TodoList: FC = () => {
       </div>
     </div>
   );
-};
+});
+
+TodoList.displayName = "TodoList";

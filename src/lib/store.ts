@@ -1,11 +1,18 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { todoSliceReducer } from "./slices";
+import { apiSlice } from "./features/api/apiSlice";
+import { listenerMiddleware } from "./middlewares/listenerMiddleware";
 
 export const makeStore = () => {
   return configureStore({
     reducer: {
       todoSlice: todoSliceReducer,
+      [apiSlice.reducerPath]: apiSlice.reducer,
     },
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware()
+        .prepend(listenerMiddleware.middleware)
+        .concat(apiSlice.middleware),
   });
 };
 
