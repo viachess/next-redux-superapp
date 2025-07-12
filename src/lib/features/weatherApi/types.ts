@@ -1,8 +1,4 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-// import type { Post } from "@/features/posts/postsSlice";
-import { WEATHER_API_BASE_URL } from "./constants";
-
-type CityWeatherData = {
+export type CityWeatherData = {
   location: {
     name: string;
     region: string;
@@ -50,21 +46,4 @@ type CityWeatherData = {
   };
 };
 
-type City = string;
-
-// Define our single API slice object
-export const apiSlice = createApi({
-  // The cache reducer expects to be added at `state.api` (already default - this is optional)
-  reducerPath: "api",
-  baseQuery: fetchBaseQuery({ baseUrl: WEATHER_API_BASE_URL }),
-  // The "endpoints" represent operations and requests for this server
-  endpoints: (builder) => ({
-    getCityWeather: builder.query<CityWeatherData, City>({
-      query: (city) =>
-        `/current.json?q=${city}&key=${process.env.NEXT_PUBLIC_WEATHER_API_KEY}`,
-    }),
-  }),
-});
-
-// Export the auto-generated hook for the `getPosts` query endpoint
-export const { useGetCityWeatherQuery } = apiSlice;
+export type City = string;
