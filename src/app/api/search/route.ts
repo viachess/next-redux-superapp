@@ -4,8 +4,8 @@ import { WEATHER_API_BASE_URL } from "../constants";
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
-  const city = searchParams.get("q");
-  if (!city) {
+  const searchQuery = searchParams.get("q");
+  if (!searchQuery) {
     return NextResponse.json(
       { error: "Query parameter 'q' is required" },
       { status: 400 }
@@ -13,8 +13,8 @@ export async function GET(req: NextRequest) {
   }
 
   const apiKey = process.env.WEATHER_API_KEY;
-  const url = `${WEATHER_API_BASE_URL}/current.json?q=${encodeURIComponent(
-    city
+  const url = `${WEATHER_API_BASE_URL}/search.json?q=${encodeURIComponent(
+    searchQuery
   )}&key=${apiKey}`;
 
   const { data } = await axios.get(url);

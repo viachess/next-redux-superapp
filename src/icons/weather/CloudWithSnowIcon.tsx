@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { SvgIconBase } from "./SvgIconBase";
-import { IconProps } from "./types";
+import { IconProps } from "../types";
 import { DEFAULT_ICON_SIZE } from "./constants";
 
 const CLOUD_FILL = "#E1E8ED";

@@ -1,5 +1,6 @@
 "use client";
 
+import { CitySuggest, SearchInput } from "@/components/ui";
 import {
   CloudIcon,
   SunIcon,
@@ -12,23 +13,46 @@ import {
   SunBehindRainCloudIcon,
   SunBehindSmallCloudIcon,
 } from "@/icons";
-import { useGetCityWeatherQuery } from "@/lib/features/weatherApi/weatherApiSlice";
+import {
+  useGetCityWeatherQuery,
+  useSearchLocationQuery,
+} from "@/lib/redux-store/features/weatherApi/weatherApiSlice";
+import { useCallback, useState } from "react";
 
 export default function WeatherPage() {
-  const { data, isSuccess, isLoading } = useGetCityWeatherQuery("New York");
+  const [currentCity, setCurrentCity] = useState("New York");
+  const [searchLocationQuery, setSearchLocationQuery] = useState("");
+  const {
+    data: weatherData,
+    isSuccess,
+    isLoading: weatherIsLoading,
+  } = useGetCityWeatherQuery(currentCity);
+
+  const { data: searchLocationData, isLoading: searchLocationLoading } =
+    useSearchLocationQuery(searchLocationQuery, {
+      skip: !searchLocationQuery,
+    });
+
+  console.log(searchLocationData);
+
+  const onSearchLocationQueryChange = useCallback((value: string) => {
+    setSearchLocationQuery(value);
+  }, []);
 
   return (
     <div>
       <h1>Weather page</h1>
-      {isLoading && <h2>Loading</h2>}
+      {weatherIsLoading && <h2>Loading</h2>}
       {isSuccess && (
         <>
           <div>
-            Location: {data.location.name}, {data.location.country}
+            Location: {weatherData.location.name},{weatherData.location.country}
           </div>
-          <div>Temp in Celcius: {data.current.temp_c}</div>
+          <div>Temp in Celcius: {weatherData.current.temp_c}</div>
         </>
       )}
+      <SearchInput onSearchQueryChange={onSearchLocationQueryChange} />
+      {searchLocationQuery && <CitySuggest list={searchLocationData} />}
       <SunIcon size={36} />
       <CloudIcon size={36} />
       <CloudWithLightningAndRainIcon size={36} />

@@ -2,7 +2,7 @@
 
 import { memo, useRef, useState } from "react";
 import { TodoListElementType } from "./types";
-import { TextArea } from "../../textarea/textarea";
+import { TextArea } from "@/components/ui";
 
 type TodoListElementProps = {
   onDelete: (id: string) => void;

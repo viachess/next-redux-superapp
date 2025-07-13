@@ -47,3 +47,13 @@ export type CityWeatherData = {
 };
 
 export type City = string;
+
+export type LocationSearchResult = {
+  lat: number;
+  lon: number;
+  name: string;
+  region: string;
+  country: string;
+};
+
+export type LocationSearchQuery = string;

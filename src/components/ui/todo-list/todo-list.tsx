@@ -4,8 +4,14 @@ import { FC, FormEvent, memo, useCallback, useRef, useState } from "react";
 import { TodoListElement } from "./todo-list-element";
 import { nanoid } from "nanoid";
 import { TodoListErrorEnum } from "./types";
-import { addTodo, deleteTodo, selectAllTodos, updateTodo } from "@/lib/slices";
-import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import {
+  addTodo,
+  deleteTodo,
+  selectAllTodos,
+  updateTodo,
+  useAppDispatch,
+  useAppSelector,
+} from "@/lib/redux-store";
 
 export const TodoList: FC = memo(() => {
   const todos = useAppSelector(selectAllTodos);
