@@ -1,12 +1,12 @@
 import { FC } from "react";
-import { SvgIconBase } from "./SvgIconBase";
+import { SvgIconBase } from "../svg-icon-base";
 import { IconProps } from "../types";
-import { DEFAULT_ICON_SIZE } from "./constants";
+import { DEFAULT_ICON_SIZE } from "../constants";
 
 const SUN_COLOR = "#FFAC33";
 const CLOUD_COLOR = "#E1E8ED";
 
-export const SunBehindCloudIcon: FC<IconProps> = ({
+export const SunBehindLargeCloudIcon: FC<IconProps> = ({
   size = DEFAULT_ICON_SIZE,
 }) => {
   return (

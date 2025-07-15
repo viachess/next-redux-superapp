@@ -45,8 +45,10 @@ export type CityWeatherData = {
     gust_kph: number;
   };
 };
-
-export type City = string;
+// q=London or q=43.657,55.555
+export type CityWeatherQuery =
+  | Pick<LocationSearchResult, "lat" | "lon">
+  | undefined;
 
 export type LocationSearchResult = {
   lat: number;

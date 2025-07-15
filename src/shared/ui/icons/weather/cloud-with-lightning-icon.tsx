@@ -1,7 +1,7 @@
 import { FC } from "react";
-import { SvgIconBase } from "./SvgIconBase";
+import { SvgIconBase } from "../svg-icon-base";
 import { IconProps } from "../types";
-import { DEFAULT_ICON_SIZE } from "./constants";
+import { DEFAULT_ICON_SIZE } from "../constants";
 
 const CLOUD_FILL = "#E1E8ED";
 const LIGHTNING_FILL = "#F4900C";

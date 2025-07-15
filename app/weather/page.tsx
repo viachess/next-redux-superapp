@@ -1,9 +1,13 @@
 "use client";
 
-import { CitySuggest } from "@/pages/weather/ui";
+import {
+  selectCurrentCityCoords,
+  useAppSelector,
+  useGetCityWeatherQuery,
+} from "@/app/store";
+import { CitySearch } from "@/pages/weather";
 import {
   CloudIcon,
-  SunIcon,
   CloudWithLightningAndRainIcon,
   CloudWithLightningIcon,
   CloudWithRainIcon,
@@ -12,30 +16,19 @@ import {
   SunBehindLargeCloudIcon,
   SunBehindRainCloudIcon,
   SunBehindSmallCloudIcon,
-  SearchInput,
+  SunIcon,
 } from "@/shared/ui";
-import { useGetCityWeatherQuery, useSearchLocationQuery } from "@/app/store";
-import { useCallback, useState } from "react";
 
 export default function WeatherPage() {
-  const [currentCity, setCurrentCity] = useState("New York");
-  const [searchLocationQuery, setSearchLocationQuery] = useState("");
+  const currentCityCoords = useAppSelector(selectCurrentCityCoords);
+
   const {
     data: weatherData,
     isSuccess,
     isLoading: weatherIsLoading,
-  } = useGetCityWeatherQuery(currentCity);
-
-  const { data: searchLocationData, isLoading: searchLocationLoading } =
-    useSearchLocationQuery(searchLocationQuery, {
-      skip: !searchLocationQuery,
-    });
-
-  console.log(searchLocationData);
-
-  const onSearchLocationQueryChange = useCallback((value: string) => {
-    setSearchLocationQuery(value);
-  }, []);
+  } = useGetCityWeatherQuery(currentCityCoords, {
+    skip: !currentCityCoords,
+  });
 
   return (
     <div>
@@ -49,8 +42,7 @@ export default function WeatherPage() {
           <div>Temp in Celcius: {weatherData.current.temp_c}</div>
         </>
       )}
-      <SearchInput onSearchQueryChange={onSearchLocationQueryChange} />
-      {searchLocationQuery && <CitySuggest list={searchLocationData} />}
+      <CitySearch />
       <SunIcon size={36} />
       <CloudIcon size={36} />
       <CloudWithLightningAndRainIcon size={36} />

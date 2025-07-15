@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import {
-  City,
+  CityWeatherQuery,
   CityWeatherData,
   LocationSearchResult,
   LocationSearchQuery,
@@ -12,13 +12,13 @@ export const weatherApiSlice = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: "api" }),
   // The "endpoints" represent operations and requests for this server
   endpoints: (builder) => ({
-    getCityWeather: builder.query<CityWeatherData, City>({
-      query: (city) => `/weather?q=${city}`,
+    getCityWeather: builder.query<CityWeatherData, CityWeatherQuery>({
+      query: (q) => `/weather?q=${q?.lat},${q?.lon}`,
     }),
     searchLocation: builder.query<LocationSearchResult[], LocationSearchQuery>({
       // Latitude and Longitude (Decimal degree) e.g: q=48.8567,2.3508
       // city name e.g.: q=Paris
-      query: (searchQuery) => `/search?q=${searchQuery}`,
+      query: (q) => `/search?q=${q}`,
     }),
   }),
 });
