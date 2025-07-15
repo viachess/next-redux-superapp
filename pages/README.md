@@ -1,0 +1,1 @@
+This is a stub folder to prevent nextjs from moving into src and using src/pages as App router is compatible with pages router and FSD architecture has naming collision with nextjs because it also suggests creating a 'pages' folder.
