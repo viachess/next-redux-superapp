@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import StoreProvider from "@/app/providers/redux-store-provider";
 import { Navigation } from "@/shared/ui";
+import cn from "classnames";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,7 +25,7 @@ export default function RootLayout({
       <html lang="en">
         <body className={inter.className}>
           <Navigation />
-          {children}
+          <div className="content-container">{children}</div>
         </body>
       </html>
     </StoreProvider>

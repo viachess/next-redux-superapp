@@ -23,6 +23,7 @@ export const InputText: FC<InputTextProps> = ({
   className = "",
   disabled = false,
   ref,
+  ...rest
 }) => {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     onChange?.(e);
@@ -43,6 +44,7 @@ export const InputText: FC<InputTextProps> = ({
       value={value}
       onChange={handleChange}
       onKeyDown={handleKeyDown}
+      {...rest}
     />
   );
 };

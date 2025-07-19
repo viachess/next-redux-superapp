@@ -6,8 +6,7 @@ import {
 } from "./types";
 
 const initialState: WeatherSliceState = {
-  currentCityName: "",
-  currentCityCoords: undefined,
+  currentCity: undefined,
   searchLocationQuery: "",
 };
 
@@ -16,12 +15,7 @@ const weatherSlice = createSlice({
   initialState,
   reducers: {
     updateCity(state, action: UpdateCityAction) {
-      const { name, lat, lon } = action.payload;
-      state.currentCityName = name;
-      state.currentCityCoords = {
-        lat,
-        lon,
-      };
+      state.currentCity = { ...action.payload };
     },
     updateSearchLocationQuery(state, action: UpdateSearchLocationQueryAction) {
       const { query } = action.payload;

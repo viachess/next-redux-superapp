@@ -1,0 +1,20 @@
+.side {
+  line-height: 80px;
+}
+
+.sign {
+  margin-bottom: 8px;
+  font-size: 68px;
+}
+
+.temperature {
+  font-size: 94px;
+  line-height: 108px;
+  letter-spacing: -5px;
+}
+
+.degree {
+  align-self: flex-start;
+  font-size: 62px;
+  margin-top: 1px;
+}
