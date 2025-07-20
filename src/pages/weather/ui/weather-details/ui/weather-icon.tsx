@@ -1,4 +1,5 @@
 import {
+  MistIcon,
   SunIcon,
   // CloudIcon,
   // CloudWithLightningAndRainIcon,
@@ -22,5 +23,6 @@ import {
         <SunBehindSmallCloudIcon size={36} /> */
 
 export const WeatherIcon = () => {
-  return <SunIcon size={48} />;
+  // return <SunIcon size={48} />;
+  return <MistIcon size={48} />;
 };
