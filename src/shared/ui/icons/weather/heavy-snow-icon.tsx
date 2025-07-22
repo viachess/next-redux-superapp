@@ -3,9 +3,12 @@ import { SvgIconBase } from "../svg-icon-base";
 import { IconProps } from "../types";
 import { DEFAULT_ICON_SIZE } from "../constants";
 
-export const HeavySnowIcon: FC<IconProps> = ({ size = DEFAULT_ICON_SIZE }) => {
+export const HeavySnowIcon: FC<IconProps> = ({
+  size = DEFAULT_ICON_SIZE,
+  ...rest
+}) => {
   return (
-    <SvgIconBase viewBox="0 0 1024 1024" width={size} height={size}>
+    <SvgIconBase viewBox="0 0 1024 1024" width={size} height={size} {...rest}>
       <path
         d="M500.45952 319.85664m-248.17664 0a248.17664 248.17664 0 1 0 496.35328 0 248.17664 248.17664 0 1 0-496.35328 0Z"
         fill="#F2FAFE"

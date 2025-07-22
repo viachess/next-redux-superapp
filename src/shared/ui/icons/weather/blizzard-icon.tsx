@@ -3,9 +3,17 @@ import { SvgIconBase } from "../svg-icon-base";
 import { IconProps } from "../types";
 import { DEFAULT_ICON_SIZE } from "../constants";
 
-export const BlizzardIcon: FC<IconProps> = ({ size = DEFAULT_ICON_SIZE }) => {
+export const BlizzardIcon: FC<IconProps> = ({
+  size = DEFAULT_ICON_SIZE,
+  ...rest
+}) => {
   return (
-    <SvgIconBase viewBox="0 0 226.705 226.705" width={size} height={size}>
+    <SvgIconBase
+      viewBox="0 0 226.705 226.705"
+      width={size}
+      height={size}
+      {...rest}
+    >
       <g>
         <path
           d="M174.177,106.669c-23.998,0-43.522,19.523-43.522,43.522c0,20.026,16.291,36.318,36.316,36.318c4.143,0,7.5-3.358,7.5-7.5

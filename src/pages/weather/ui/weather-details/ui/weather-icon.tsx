@@ -1,28 +1,17 @@
 import {
-  MistIcon,
-  SunIcon,
-  // CloudIcon,
-  // CloudWithLightningAndRainIcon,
-  // CloudWithLightningIcon,
-  // CloudWithRainIcon,
-  // CloudWithSnowIcon,
-  // SunBehindCloudIcon,
-  // SunBehindLargeCloudIcon,
-  // SunBehindRainCloudIcon,
-  // SunBehindSmallCloudIcon,
-} from "@/shared/ui";
+  WeatherConditionsCodesEnum,
+  weatherConditionsMap,
+} from "@/shared/conditions";
+import { FC, memo } from "react";
 
-/* <CloudIcon size={36} />
-        <CloudWithLightningAndRainIcon size={36} />
-        <CloudWithLightningIcon size={36} />
-        <CloudWithRainIcon size={36} />
-        <CloudWithSnowIcon size={36} />
-        <SunBehindCloudIcon size={36} />
-        <SunBehindLargeCloudIcon size={36} />
-        <SunBehindRainCloudIcon size={36} />
-        <SunBehindSmallCloudIcon size={36} /> */
-
-export const WeatherIcon = () => {
-  // return <SunIcon size={48} />;
-  return <MistIcon size={48} />;
+type Props = {
+  weatherCode: number;
 };
+
+export const WeatherIcon: FC<Props> = memo(({ weatherCode }) => {
+  const code = weatherCode.toString() as WeatherConditionsCodesEnum;
+  const Icon = weatherConditionsMap[code]?.icon;
+  return Icon ? <Icon size={36} /> : null;
+});
+
+WeatherIcon.displayName = "WeatherIcon";

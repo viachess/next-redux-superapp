@@ -3,9 +3,18 @@ import { SvgIconBase } from "../svg-icon-base";
 import { IconProps } from "../types";
 import { DEFAULT_ICON_SIZE } from "../constants";
 
-export const MistIcon: FC<IconProps> = ({ size = DEFAULT_ICON_SIZE }) => {
+export const MistIcon: FC<IconProps> = ({
+  size = DEFAULT_ICON_SIZE,
+  ...rest
+}) => {
   return (
-    <SvgIconBase viewBox="0 0 512 512" width={size} height={size} fill="black">
+    <SvgIconBase
+      viewBox="0 0 512 512"
+      width={size}
+      height={size}
+      fill="black"
+      {...rest}
+    >
       <g>
         <g>
           <rect y="304.899" width="477.483" height="34.517" />

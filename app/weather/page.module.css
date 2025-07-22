@@ -1,0 +1,15 @@
+.header {
+    min-width: 1024px;
+    max-width: max-content;
+    position: sticky;
+    margin: 0 auto;
+    padding: 32px 0;
+}
+
+.main {
+    display: grid;
+    grid-template-columns: 1fr;
+    background-color: white;
+    margin: 0 auto;
+    min-width: 1024px;
+}

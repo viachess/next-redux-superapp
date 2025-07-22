@@ -146,7 +146,7 @@ export const CitySearch: FC = memo(() => {
                 onFocus: handleInputFocus,
                 onBlur: handleInputBlur,
               })}
-              className="relative w-full h-full px-2 py-1 border-[1px] border-gray-300 rounded-xl"
+              className="relative w-full h-full px-2 py-1 rounded-xl"
             />
             <label
               htmlFor="city-search-input"

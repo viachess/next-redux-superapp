@@ -14,6 +14,7 @@ import {
   SunBehindSmallCloudIcon,
   SunIcon,
 } from "./ui";
+import { IconProps } from "./ui/icons/types";
 
 export enum WeatherConditionsCodesEnum {
   Sunny = "1000",
@@ -70,7 +71,7 @@ type WeatherConditionsData = {
   code: number;
   day: string;
   night: string;
-  icon: FC;
+  icon: FC<IconProps>;
   languages: Record<
     string,
     {

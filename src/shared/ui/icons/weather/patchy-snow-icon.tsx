@@ -3,9 +3,12 @@ import { SvgIconBase } from "../svg-icon-base";
 import { IconProps } from "../types";
 import { DEFAULT_ICON_SIZE } from "../constants";
 
-export const PatchySnowIcon: FC<IconProps> = ({ size = DEFAULT_ICON_SIZE }) => {
+export const PatchySnowIcon: FC<IconProps> = ({
+  size = DEFAULT_ICON_SIZE,
+  ...rest
+}) => {
   return (
-    <SvgIconBase viewBox="0 0 1024 1024" width={size} height={size}>
+    <SvgIconBase viewBox="0 0 1024 1024" width={size} height={size} {...rest}>
       <path
         d="M503.53152 334.1824m-262.5024 0a262.5024 262.5024 0 1 0 525.0048 0 262.5024 262.5024 0 1 0-525.0048 0Z"
         fill="#F2FAFE"

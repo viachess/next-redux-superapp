@@ -8,9 +8,10 @@ const LIGHTNING_FILL = "#F4900C";
 
 export const CloudWithLightningIcon: FC<IconProps> = ({
   size = DEFAULT_ICON_SIZE,
+  ...rest
 }) => {
   return (
-    <SvgIconBase viewBox="0 0 36 36" width={size} height={size}>
+    <SvgIconBase viewBox="0 0 36 36" width={size} height={size} {...rest}>
       <path
         fill={LIGHTNING_FILL}
         d="M13.917 36a.417.417 0 0 1-.371-.607L17 29h-5.078c-.174 0-.438-.031-.562-.297c-.114-.243-.057-.474.047-.703L15 19c.078-.067 6.902.393 7 .393a.417.417 0 0 1 .369.608l-3.817 6h5.032c.174 0 .329.108.391.271a.418.418 0 0 1-.119.461l-9.666 9.166a.422.422 0 0 1-.273.101z"

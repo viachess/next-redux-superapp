@@ -9,6 +9,7 @@
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
   --navbar-height: 64px;
+  --text-secondary: rgba(133,136,158,1)
 }
 
 @media (prefers-color-scheme: dark) {

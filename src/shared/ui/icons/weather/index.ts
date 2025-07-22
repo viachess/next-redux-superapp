@@ -14,3 +14,7 @@ export * from "./moderate-snow-icon";
 export * from "./heavy-snow-icon";
 export * from "./sleet-icon";
 export * from "./blizzard-icon";
+export * from "./atmosphere-pressure-icon";
+export * from "./humidity-icon";
+export * from "./water-temperature-icon";
+export * from "./wind-speed-icon";
