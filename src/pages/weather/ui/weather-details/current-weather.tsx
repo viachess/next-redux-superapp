@@ -1,29 +1,20 @@
 import {
-  selectCurrentCityCoords,
-  useAppSelector,
-  useGetCityWeatherQuery,
-} from "@/app/store";
-import { FC, memo, useMemo } from "react";
-import cn from "classnames";
-import s from "./weather-details.module.css";
-import { WeatherIcon } from "./ui/weather-icon";
-import {
   AtmospherePressureIcon,
   HumidityIcon,
-  WaterTemperatureIcon,
   WindSpeedIcon,
 } from "@/shared/ui";
+import cn from "classnames";
+import { FC, memo, useMemo } from "react";
+import { useCurrentCityWeather } from "../../hooks/use-current-city-weather";
+import s from "./current-weather.module.css";
+import { WeatherIcon } from "./ui/weather-icon";
 
-export const WeatherDetails: FC = memo(() => {
-  const currentCityCoords = useAppSelector(selectCurrentCityCoords);
-
+export const CurrentWeather: FC = memo(() => {
   const {
     data: weatherData,
     isSuccess,
     isLoading: weatherIsLoading,
-  } = useGetCityWeatherQuery(currentCityCoords, {
-    skip: !currentCityCoords,
-  });
+  } = useCurrentCityWeather();
 
   const currentTemperatureSign = useMemo(() => {
     if (weatherData?.current.temp_c === 0 || !weatherData) {
@@ -126,4 +117,4 @@ export const WeatherDetails: FC = memo(() => {
   );
 });
 
-WeatherDetails.displayName = "WeatherDetails";
+CurrentWeather.displayName = "CurrentWeather";

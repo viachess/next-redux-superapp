@@ -1,3 +1,4 @@
 export { CitySuggest } from "./city-suggest/city-suggest";
 export { CitySearch } from "./city-search/city-search";
-export { WeatherDetails } from "./weather-details/weather-details";
+export { CurrentWeather } from "./weather-details/current-weather";
+export { PressureArc } from "./pressure-arc/pressure-arc";
