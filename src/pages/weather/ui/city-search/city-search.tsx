@@ -132,7 +132,7 @@ export const CitySearch: FC = memo(() => {
         getRootProps,
         isOpen,
       }) => (
-        <div>
+        <div className="w-full relative">
           <div
             className="relative shadow-md bg-white h-11 rounded-xl"
             {...getRootProps({}, { suppressRefError: true })}
@@ -160,7 +160,7 @@ export const CitySearch: FC = memo(() => {
           </div>
           {menuComponent}
           <ul
-            className={`relative w-full rounded-xl bg-white mt-1 shadow-md max-h-80 z-10 ${
+            className={`absolute top-12 w-full rounded-xl bg-white mt-1 shadow-md max-h-80 overflow-y-auto z-10 ${
               !showSearchResults && "hidden"
             }`}
             {...getMenuProps()}

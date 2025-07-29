@@ -11,7 +11,7 @@ export const CloudIcon: FC<IconProps> = ({
   ...rest
 }) => {
   return (
-    <SvgIconBase viewBox="0 0 36 36" width={size} height={size} {...rest}>
+    <SvgIconBase viewBox="0 0 36 36" {...rest} width={size} height={size}>
       <path
         fill={topCloudFill}
         d="M27 8a6.98 6.98 0 0 0-2.015.298c.005-.1.015-.197.015-.298a5.998 5.998 0 0 0-11.785-1.573A5.974 5.974 0 0 0 11 6a6 6 0 1 0 0 12a5.998 5.998 0 0 0 5.785-4.428A5.975 5.975 0 0 0 19 14c.375 0 .74-.039 1.096-.104c-.058.36-.096.727-.096 1.104c0 3.865 3.135 7 7 7s7-3.135 7-7a7 7 0 0 0-7-7z"

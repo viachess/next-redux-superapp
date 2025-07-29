@@ -11,7 +11,7 @@ export const CloudWithSnowIcon: FC<IconProps> = ({
   ...rest
 }) => {
   return (
-    <SvgIconBase viewBox="0 0 36 36" width={size} height={size} {...rest}>
+    <SvgIconBase viewBox="0 0 36 36" {...rest} width={size} height={size}>
       <path
         fill={CLOUD_FILL}
         d="M28 4c-.825 0-1.62.125-2.369.357A6.498 6.498 0 0 0 19.5 0c-3.044 0-5.592 2.096-6.299 4.921A4.459 4.459 0 0 0 10.5 4A4.5 4.5 0 0 0 6 8.5c0 .604.123 1.178.339 1.704A4.98 4.98 0 0 0 5 10c-2.762 0-5 2.238-5 5s2.238 5 5 5h23a8 8 0 1 0 0-16z"

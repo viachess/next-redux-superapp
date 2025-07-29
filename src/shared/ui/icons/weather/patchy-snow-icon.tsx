@@ -8,7 +8,7 @@ export const PatchySnowIcon: FC<IconProps> = ({
   ...rest
 }) => {
   return (
-    <SvgIconBase viewBox="0 0 1024 1024" width={size} height={size} {...rest}>
+    <SvgIconBase viewBox="0 0 1024 1024" {...rest} width={size} height={size}>
       <path
         d="M503.53152 334.1824m-262.5024 0a262.5024 262.5024 0 1 0 525.0048 0 262.5024 262.5024 0 1 0-525.0048 0Z"
         fill="#F2FAFE"

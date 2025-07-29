@@ -8,6 +8,7 @@ import { FC, memo, useMemo } from "react";
 import { useCurrentCityWeather } from "../../hooks/use-current-city-weather";
 import s from "./current-weather.module.css";
 import { WeatherIcon } from "./ui/weather-icon";
+import { convertPressureToMercury } from "@/shared";
 
 export const CurrentWeather: FC = memo(() => {
   const {
@@ -17,24 +18,17 @@ export const CurrentWeather: FC = memo(() => {
   } = useCurrentCityWeather();
 
   const currentTemperatureSign = useMemo(() => {
-    if (weatherData?.current.temp_c === 0 || !weatherData) {
+    if (!weatherData || weatherData.current.temp_c <= 0) {
       return "";
     }
-    if (weatherData.current.temp_c > 0) {
-      return "+";
-    }
-    return "-";
+    return "+";
   }, [weatherData]);
 
   const feelsLikeTemperature = useMemo(() => {
-    if (weatherData?.current.feelslike_c === 0 || !weatherData) {
-      return weatherData?.current.feelslike_c;
+    if (!weatherData || weatherData.current.feelslike_c <= 0) {
+      return Math.floor(weatherData?.current.feelslike_c || 0);
     }
-
-    if (weatherData.current.feelslike_c > 0) {
-      return `+${Math.floor(weatherData.current.feelslike_c)}`;
-    }
-    return `-${Math.floor(weatherData.current.feelslike_c)}`;
+    return `+${Math.floor(weatherData.current.feelslike_c)}`;
   }, [weatherData]);
 
   const precipitationForecastText = useMemo(() => {
@@ -47,15 +41,38 @@ export const CurrentWeather: FC = memo(() => {
   }, []);
 
   return (
-    <div className="rounded-t-xl px-8 pt-5 pb-0">
-      {weatherIsLoading && <h2>Loading</h2>}
+    <div>
+      {weatherIsLoading && (
+        <div className="flex w-full justify-start items-center py-8">
+          <svg
+            className="animate-spin h-12 w-12 text-gray-400"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <circle
+              className="opacity-25"
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="currentColor"
+              strokeWidth="4"
+            />
+            <path
+              className="opacity-75"
+              fill="currentColor"
+              d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+            />
+          </svg>
+        </div>
+      )}
       {isSuccess && (
         <div className="flex w-full">
           {/* large number with current temperature */}
           <div className="flex items-center mr-4">
             <span className={cn(s.side, s.sign)}>{currentTemperatureSign}</span>
             <span className={s.temperature}>
-              {Math.round(weatherData.current.temp_c)}
+              {Math.floor(weatherData.current.temp_c)}
             </span>
             <span className={cn(s.side, s.degree)}>°</span>
           </div>
@@ -80,8 +97,10 @@ export const CurrentWeather: FC = memo(() => {
                     <WindSpeedIcon size={20} stroke="currentColor" />
                   </div>
                   <span>
-                    {(weatherData.current.wind_kph / 3.6).toFixed(1)}ms{" "}
-                    {weatherData.current.wind_dir}
+                    <span>
+                      {(weatherData.current.wind_kph / 3.6).toFixed(1)} m/s{" "}
+                      {weatherData.current.wind_dir}
+                    </span>
                   </span>
                 </div>
                 {/* pressure */}
@@ -89,9 +108,8 @@ export const CurrentWeather: FC = memo(() => {
                   <div className="rounded-3xl bg-light-gray w-6 h-6 flex items-center justify-center">
                     <AtmospherePressureIcon size={16} stroke="currentColor" />
                   </div>
-                  {/* millibars to mm of mercury */}
                   <span>
-                    {Math.floor(weatherData.current.pressure_mb / 1.333)}
+                    {convertPressureToMercury(weatherData.current.pressure_mb)}
                   </span>
                 </div>
                 {/* humidity */}

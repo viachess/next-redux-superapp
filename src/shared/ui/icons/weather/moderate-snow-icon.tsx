@@ -8,7 +8,7 @@ export const ModerateSnowIcon: FC<IconProps> = ({
   ...rest
 }) => {
   return (
-    <SvgIconBase viewBox="0 0 1024 1024" width={size} height={size} {...rest}>
+    <SvgIconBase viewBox="0 0 1024 1024" {...rest} width={size} height={size}>
       <path
         d="M506.61376 311.15264m-239.47264 0a239.47264 239.47264 0 1 0 478.94528 0 239.47264 239.47264 0 1 0-478.94528 0Z"
         fill="#F2FAFE"

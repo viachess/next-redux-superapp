@@ -12,7 +12,7 @@ export const SunBehindRainCloudIcon: FC<IconProps> = ({
   ...rest
 }) => {
   return (
-    <SvgIconBase viewBox="0 0 36 36" width={size} height={size} {...rest}>
+    <SvgIconBase viewBox="0 0 36 36" {...rest} width={size} height={size}>
       <path
         fill={SUN_COLOR}
         d="M13 2s0-2 2-2s2 2 2 2v2s0 2-2 2s-2-2-2-2V2zM4 13s2 0 2 2s-2 2-2 2H2s-2 0-2-2s2-2 2-2h2zm3.872-6.957s1.414 1.414 0 2.828s-2.828 0-2.828 0L3.629 7.458s-1.414-1.414 0-2.829c1.415-1.414 2.829 0 2.829 0l1.414 1.414zm17.085 2.828s-1.414 1.414-2.828 0s0-2.828 0-2.828l1.414-1.414s1.414-1.414 2.828 0s0 2.828 0 2.828l-1.414 1.414z"
