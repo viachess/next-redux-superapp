@@ -1,14 +1,18 @@
 import { RootState } from "../../types";
+import { createSelector } from "@reduxjs/toolkit";
 
 export const selectCurrentCity = (state: RootState) =>
   state.weatherSlice.currentCity;
-export const selectCurrentCityCoords = (state: RootState) => {
-  if (state.weatherSlice.currentCity) {
-    return {
-      lat: state.weatherSlice.currentCity.lat,
-      lon: state.weatherSlice.currentCity.lon,
-    };
+
+export const selectCurrentCityCoords = createSelector(
+  [selectCurrentCity],
+  (city) => {
+    if (city) {
+      return { lat: city.lat, lon: city.lon };
+    }
+    return undefined;
   }
-};
+);
+
 export const selectSearchLocationQuery = (state: RootState) =>
   state.weatherSlice.searchLocationQuery;

@@ -1,5 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { todoSliceReducer, weatherSliceReducer } from "./slices";
+import {
+  modalSliceReducer,
+  todoSliceReducer,
+  weatherSliceReducer,
+} from "./slices";
 import { weatherApiSlice } from "./features/weatherApi/weatherApiSlice";
 import { listenerMiddleware } from "./middlewares/listenerMiddleware";
 
@@ -8,6 +12,7 @@ export const makeStore = () => {
     reducer: {
       todoSlice: todoSliceReducer,
       weatherSlice: weatherSliceReducer,
+      modalSlice: modalSliceReducer,
       [weatherApiSlice.reducerPath]: weatherApiSlice.reducer,
     },
     middleware: (getDefaultMiddleware) =>

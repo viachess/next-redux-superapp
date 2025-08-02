@@ -39,7 +39,9 @@ export const CitySearch: FC = memo(() => {
     isSuccess: isSearchLocationQuerySuccess,
     isError: isSearchLocationQueryError,
     isFetching: isSearchLocationFetching,
-  } = useSearchLocationQuery(searchLocationQuery);
+  } = useSearchLocationQuery({
+    searchQuery: searchLocationQuery,
+  });
 
   const handleSearchQueryChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
@@ -109,13 +111,15 @@ export const CitySearch: FC = memo(() => {
       return "Find your city";
     }
 
-    return `${currentCity.name}, ${currentCity.country}`;
+    return `${currentCity.name}, ${currentCity.region}, ${currentCity.country}`;
   }, [currentCity]);
+
   return (
     <Downshift
       id="city-search-box"
       onChange={(selection) => {
         dispatch(updateCity(selection as LocationSearchResult));
+        localStorage.setItem("selectedCity", JSON.stringify(selection));
         resetSearchQuery();
         if (inputRef.current) {
           inputRef.current.blur();
@@ -167,7 +171,7 @@ export const CitySearch: FC = memo(() => {
           >
             {showSearchResults
               ? searchLocationResult!.map((item, index) => {
-                  const { name, country } = item;
+                  const { name, region, country } = item;
                   return (
                     <li
                       className={cn(
@@ -182,7 +186,7 @@ export const CitySearch: FC = memo(() => {
                       })}
                     >
                       <span>
-                        {name}, {country}
+                        {name}, {region}, {country}
                       </span>
                     </li>
                   );

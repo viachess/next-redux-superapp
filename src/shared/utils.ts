@@ -19,3 +19,23 @@ export function clamp(value: number, min: number, max: number): number {
 export function convertPressureToMercury(mb_pressure: number): number {
   return Math.floor(mb_pressure / 1.333);
 }
+
+export function hexToRgbA(hex: string, opacity: number | string) {
+  let c;
+
+  if (/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)) {
+    c = hex.substring(1).split("");
+
+    if (c.length === 3) {
+      c = [c[0], c[0], c[1], c[1], c[2], c[2]];
+    }
+
+    c = `0x${c.join("")}`;
+
+    // @ts-ignore
+    return `rgba(${[(c >> 16) & 255, (c >> 8) & 255, c & 255].join(",")},
+  ${opacity})`;
+  }
+
+  return "";
+}

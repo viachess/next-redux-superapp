@@ -45,10 +45,20 @@ export type CityWeatherData = {
     gust_kph: number;
   };
 };
-// q=London or q=43.657,55.555
+
 export type CityWeatherQuery =
   | Pick<LocationSearchResult, "lat" | "lon">
   | undefined;
+
+export type WeatherApiSearchResponse = {
+  id: number;
+  name: string;
+  region: string;
+  country: string;
+  lat: number;
+  lon: number;
+  url: string;
+};
 
 export type LocationSearchResult = {
   lat: number;
@@ -58,4 +68,76 @@ export type LocationSearchResult = {
   country: string;
 };
 
-export type LocationSearchQuery = string;
+export type LocationSearchQuery =
+  | {
+      lat: number;
+      lon: number;
+    }
+  | { searchQuery: string };
+
+export type GeocoderResponse = {
+  response: {
+    GeoObjectCollection: {
+      metaDataProperty: {
+        GeocoderResponseMetaData: {
+          request: string;
+          found: string;
+          results: string;
+        };
+      };
+      featureMember: Array<{
+        GeoObject: {
+          metaDataProperty: {
+            GeocoderMetaData: {
+              kind: string;
+              text: string;
+              precision: string;
+              Address: {
+                country_code: string;
+                postal_code: string;
+                formatted: string;
+                Components: Array<{
+                  kind: string;
+                  name: string;
+                }>;
+              };
+              AddressDetails: {
+                Country: {
+                  AddressLine: string;
+                  CountryNameCode: string;
+                  CountryName: string;
+                  AdministrativeArea: {
+                    AdministrativeAreaName: string;
+                    Locality: {
+                      LocalityName: string;
+                      Thoroughfare: {
+                        ThoroughfareName: string;
+                        Premise: {
+                          PremiseNumber: string;
+                          PostalCode: {
+                            PostalCodeNumber: string;
+                          };
+                        };
+                      };
+                    };
+                  };
+                };
+              };
+            };
+          };
+          description: string;
+          name: string;
+          boundedBy: {
+            Envelope: {
+              lowerCorner: string;
+              upperCorner: string;
+            };
+          };
+          Point: {
+            pos: string;
+          };
+        };
+      }>;
+    };
+  };
+};

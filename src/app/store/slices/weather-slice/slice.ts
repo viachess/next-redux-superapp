@@ -4,6 +4,7 @@ import {
   UpdateSearchLocationQueryAction,
   WeatherSliceState,
 } from "./types";
+import { LocationSearchResult } from "../../features";
 
 const initialState: WeatherSliceState = {
   currentCity: undefined,

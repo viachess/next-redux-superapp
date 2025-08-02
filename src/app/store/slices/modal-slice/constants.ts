@@ -1,0 +1,4 @@
+export const LAST_OPENED_MODAL = "LAST_OPENED_MODAL";
+export const MODAL_NOT_FOUND = "MODAL_NOT_FOUND";
+export const MODAL_ZINDEX = 10000;
+export const CONTEXT_ZINDEX = 1000;

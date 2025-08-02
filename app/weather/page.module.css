@@ -1,6 +1,6 @@
 .header {
-    min-width: 1024px;
-    max-width: max-content;
+    width: 100%;
+    max-width: 1024px;
     position: sticky;
     top: 0;  
     margin: 0 auto;
@@ -8,6 +8,7 @@
     align-items: center;
     justify-content: center;
     padding: 32px 0;
+    gap: 16px;
 }
 
 .main {

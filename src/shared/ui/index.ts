@@ -7,3 +7,4 @@ export { Navigation } from "./navigation/navigation";
 export { InputText } from "./input-text/input-text";
 export { TextArea } from "./textarea/textarea";
 export * from "./icons";
+export * from "./portal-modal";

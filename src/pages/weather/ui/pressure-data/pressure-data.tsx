@@ -2,7 +2,7 @@
 
 import { FC, memo } from "react";
 import { PressureArc } from "../pressure-arc/pressure-arc";
-import { useCurrentCityWeather } from "../../hooks/use-current-city-weather";
+import { useCurrentCityWeather } from "../../model/use-current-city-weather";
 import {
   ABOVE_PRESSURE_NORM_COLOR,
   BELOW_PRESSURE_NORM_COLOR,

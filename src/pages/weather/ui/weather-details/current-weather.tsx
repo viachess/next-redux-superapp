@@ -5,7 +5,7 @@ import {
 } from "@/shared/ui";
 import cn from "classnames";
 import { FC, memo, useMemo } from "react";
-import { useCurrentCityWeather } from "../../hooks/use-current-city-weather";
+import { useCurrentCityWeather } from "../../model/use-current-city-weather";
 import s from "./current-weather.module.css";
 import { WeatherIcon } from "./ui/weather-icon";
 import { convertPressureToMercury } from "@/shared";
@@ -87,9 +87,7 @@ export const CurrentWeather: FC = memo(() => {
             </div>
             {/* feels like block */}
             <div className="flex justify-between pb-4 text-[var(--text-secondary)]">
-              {/* feels like description */}
               <div>Feels like {feelsLikeTemperature}°</div>
-              {/* TODO: add icons for each line */}
               <div className="flex gap-6">
                 {/* wind speed */}
                 <div className="flex items-center gap-1">

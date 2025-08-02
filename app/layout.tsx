@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import StoreProvider from "@/app/providers/redux-store-provider";
 import { Navigation } from "@/shared/ui";
-import cn from "classnames";
+import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,9 +23,26 @@ export default function RootLayout({
   return (
     <StoreProvider>
       <html lang="en">
+        <head>
+          {process.env.NEXT_PUBLIC_YANDEX_MAPS_API_KEY && (
+            <Script
+              src={`https://api-maps.yandex.ru/3.0/?apikey=${encodeURIComponent(
+                process.env.NEXT_PUBLIC_YANDEX_MAPS_API_KEY
+              )}&lang=ru_RU`}
+              strategy="afterInteractive"
+              onError={(e) =>
+                console.error("Failed to load Yandex Maps API:", e)
+              }
+            />
+          )}
+        </head>
         <body className={inter.className}>
           <Navigation />
-          <div className="content-container">{children}</div>
+          <div id="root" className="content-container">
+            {children}
+          </div>
+          <div id="modal-root"></div>
+          <div id="context-root"></div>
         </body>
       </html>
     </StoreProvider>

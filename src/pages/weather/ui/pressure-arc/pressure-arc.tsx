@@ -3,7 +3,7 @@
 import { FC, memo } from "react";
 import { Group } from "@visx/group";
 import { Arc, Circle } from "@visx/shape";
-import { useCurrentCityWeather } from "../../hooks/use-current-city-weather";
+import { useCurrentCityWeather } from "../../model/use-current-city-weather";
 import {
   arcs,
   CIRCLE_RADIUS,
