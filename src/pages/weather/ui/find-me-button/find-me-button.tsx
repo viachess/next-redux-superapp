@@ -1,7 +1,7 @@
 "use client";
 
 import { openModal, useAppDispatch } from "@/app/store";
-import { WEATHER_MAP_MODAL } from "@/app/store/slices/modal-slice/modal-ids";
+import { MODAL_IDS } from "@/app/store/slices/modal-slice/modal-ids";
 import { CompassArrowIcon } from "@/shared/ui";
 import dynamic from "next/dynamic";
 import { memo } from "react";
@@ -104,7 +104,7 @@ const getUserPosition = () => {
 export const FindMeButton = memo(() => {
   const dispatch = useAppDispatch();
   const handleClick = () => {
-    dispatch(openModal(WEATHER_MAP_MODAL));
+    dispatch(openModal(MODAL_IDS.WEATHER_MAP));
   };
 
   return (

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { useAppDispatch, WEATHER_MAP_MODAL } from "@/app/store";
+import { useAppDispatch, MODAL_IDS } from "@/app/store";
 import { closeModal } from "@/app/store/slices/modal-slice/slice";
 import { ModalContainer, PortalTypeEnum } from "@/shared/ui";
 import { WeatherMapContent } from "./weather-map-content";
@@ -22,7 +22,7 @@ export const WeatherModal = () => {
   return (
     <ModalContainer
       opacity={0.5}
-      name={WEATHER_MAP_MODAL}
+      name={MODAL_IDS.WEATHER_MAP}
       zIndex={5}
       type={PortalTypeEnum.MODAL}
     >
